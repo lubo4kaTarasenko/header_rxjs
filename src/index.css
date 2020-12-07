@@ -15,5 +15,23 @@ code {
   width: 80%;
   margin: 20px;
   text-align: justify;
+}
+#header{
+  top: 0; left: 0;
+  width: 100%;
+  transition: all .3s ease;
+}
+.out{
+  transform: translateY(-100%);
+  position: fixed;
+}
+/*#header {
+	position: fixed;
+	top: 0; left: 0;
+	width: 100%;
 
 }
+#header.out {
+  
+  color:red;
+}*/
