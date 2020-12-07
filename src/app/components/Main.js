@@ -1,7 +1,8 @@
 import React from 'react'
 import TextBody from './TextBody';
 import { Container, Jumbotron } from 'react-bootstrap';
-import { timer } from 'rxjs';
+import { fromEvent } from 'rxjs';
+
 
 export default class Main extends React.Component {    
   constructor(props) {
@@ -13,21 +14,8 @@ export default class Main extends React.Component {
 
   componentDidMount() {
     this.prevScrollTop = 0
-    const header = document.getElementById('header')
-    const scrollableContainer = document.getElementsByTagName('html')[0];
-    const t = timer(0, 100);
-    t.subscribe(()=> {      
-      const scrollDiff = this.prevScrollTop - scrollableContainer.scrollTop
-      
-      if(scrollDiff == 0) return;
-      if (scrollDiff >= -50) { header.classList.add("out");
-      } else {
-        header.classList.remove("out");
-      } 
-      this.prevScrollTop = scrollableContainer.scrollTop
-    })
-   
-    //window.onscroll = () => { this.scrollAnimation()};
+    const scroll = fromEvent(window, 'scroll')
+    scroll.subscribe(()=>{this.scrollAnimation()})
   }
 
   render() {
@@ -42,13 +30,14 @@ export default class Main extends React.Component {
       </div>
   )}
 
-  scrollAnimation(){    
+  scrollAnimation(){   
+    console.log('scroll') 
     const header = document.getElementById('header')
     const scrollableContainer = document.getElementsByTagName('html')[0];
-    const scrollDiff = this.prevScrollTop - scrollableContainer.scrollTop
-    if (scrollDiff <= 50) {
-      header.classList.add("out");
-    } else {
+    const scrollDiff = scrollableContainer.scrollTop - this.prevScrollTop
+    if (Math.abs(scrollDiff) < 50) return
+    if (scrollDiff > 0){ header.classList.add("out");}
+    else {
       header.classList.remove("out");
     } 
     this.prevScrollTop = scrollableContainer.scrollTop

@@ -12,18 +12,20 @@ code {
     monospace;
 }
 .text{
-  width: 30%;
-  margin: 20px;
+  width: 70%;
+  margin: auto;
   text-align: justify;
+  margin-top: 200px;
 }
 #header{
   top: 0; left: 0;
   width: 100%;
+  position: fixed;
+  text-align: center;
   transition: all .3s ease;
 }
 .out{
-  /*transform: translateY(-100%); */
-  position: fixed;
+  transform: translateY(-100%);
 }
 /*#header {
 	position: fixed;
