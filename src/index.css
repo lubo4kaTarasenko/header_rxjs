@@ -12,7 +12,7 @@ code {
     monospace;
 }
 .text{
-  width: 80%;
+  width: 30%;
   margin: 20px;
   text-align: justify;
 }
@@ -22,7 +22,7 @@ code {
   transition: all .3s ease;
 }
 .out{
-  transform: translateY(-100%);
+  /*transform: translateY(-100%); */
   position: fixed;
 }
 /*#header {
