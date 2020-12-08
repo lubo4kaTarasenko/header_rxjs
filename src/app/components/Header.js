@@ -8,7 +8,7 @@ export default class Header extends React.Component {
       <h1>Get an amazing discount</h1>
       </Container>
       <div className='header_buy'>
-          <Button variant="success">BUY NOW</Button>
+          <Button variant="success" id='buy_btn_h'>BUY NOW</Button>
         </div>
     </Jumbotron>        
   )}

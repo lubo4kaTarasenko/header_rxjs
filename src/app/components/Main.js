@@ -22,11 +22,11 @@ export default class Main extends React.Component {
   render() {
     return (
       <div className='main_cont'>
-        {this.state.wasButton ? <Header/> : console.log(0)}
+        {this.state.wasButton ? <Header/> : null}
         <Jumbotron fluid id='header'>
           <Container>
            <h1>Super Amazing Header</h1>
-           {this.state.wasButton ? <Button variant="success" id='buy_btn_h'>BUY NOW</Button> : console.log(0)}
+           {this.state.wasButton ? <Button variant="success" id='buy_btn_h'>BUY NOW</Button> : null}
           </Container>
         </Jumbotron>        
         <TextBody/>
@@ -69,7 +69,5 @@ export default class Main extends React.Component {
     wasNotBtn(scroll){
       let buttonCoord = this.getCoords(scroll)
       return (scroll < buttonCoord)
-    }
-
-    
+    }    
 }
