@@ -20,6 +20,7 @@ code {
 #header{
   top: 0; left: 0;
   width: 100%;
+  position: relative;
   position: fixed;
   text-align: center;
   transition: all .3s ease;
@@ -27,13 +28,18 @@ code {
 .out{
   transform: translateY(-100%);
 }
-/*#header {
-	position: fixed;
-	top: 0; left: 0;
-	width: 100%;
-
+.buy{
+  text-align: center;
+  margin-bottom: -150px;
 }
-#header.out {
-  
-  color:red;
-}*/
+#new_header{
+  top: 0; left: 0;
+  width: 100%;
+  position: fixed;
+  text-align: center;
+  transition: all .3s ease;
+}
+#buy_btn_h{
+ position: absolute;
+ top: 70px; right: 40px;
+}

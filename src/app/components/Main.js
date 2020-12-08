@@ -1,6 +1,7 @@
 import React from 'react'
 import TextBody from './TextBody';
-import { Container, Jumbotron } from 'react-bootstrap';
+import Header from './Header';
+import { Container, Jumbotron, Button } from 'react-bootstrap';
 import { fromEvent } from 'rxjs';
 
 
@@ -8,7 +9,7 @@ export default class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      wasButton: false
     }
   }
 
@@ -21,11 +22,17 @@ export default class Main extends React.Component {
   render() {
     return (
       <div className='main_cont'>
+        {this.state.wasButton ? <Header/> : console.log(0)}
         <Jumbotron fluid id='header'>
           <Container>
            <h1>Super Amazing Header</h1>
+           {this.state.wasButton ? <Button variant="success" id='buy_btn_h'>BUY NOW</Button> : console.log(0)}
           </Container>
         </Jumbotron>        
+        <TextBody/>
+        <div className='buy'>
+          <Button variant="success" id='buy_btn'>BUY NOW</Button>
+        </div>
         <TextBody/>
       </div>
   )}
@@ -36,11 +43,33 @@ export default class Main extends React.Component {
     const scrollableContainer = document.getElementsByTagName('html')[0];
     const scrollDiff = scrollableContainer.scrollTop - this.prevScrollTop
     if (Math.abs(scrollDiff) < 50) return
-    if (scrollDiff > 0){ header.classList.add("out");}
+    if (scrollDiff > 0){ 
+      header.classList.add("out");
+      if(this.wasBtn(scrollableContainer.scrollTop)) this.setState({wasButton: true})      
+    }
     else {
       header.classList.remove("out");
+      if(this.wasNotBtn(scrollableContainer.scrollTop)) this.setState({wasButton: false})      
     } 
     this.prevScrollTop = scrollableContainer.scrollTop
   }
+ 
+    getCoords(scroll) {
+      const buy = document.getElementById("buy_btn")
+      let box = buy.getBoundingClientRect();
+      let top =  box.top + scroll    
+      return top
+    }
 
+    wasBtn(scroll){
+      let buttonCoord = this.getCoords(scroll)
+      return (scroll > buttonCoord)
+    }
+
+    wasNotBtn(scroll){
+      let buttonCoord = this.getCoords(scroll)
+      return (scroll < buttonCoord)
+    }
+
+    
 }
